@@ -2,22 +2,20 @@
 agp = "8.5.2"
 androidx-activityCompose = "1.9.2"
 assertK = "0.25"
-coilConmpose = "2.1.0"
+coilCompose = "2.1.0"
 compose = "1.7.2"
 compose-material3 = "1.3.0"
 compose-navigation = "2.8.1"
-gradle = "7.2.2"
 hilt = "2.49"
 hilt-compiler = "1.2.0"
 jUnit = "4.13.2"
 kotlin = "2.0.0"
 kotlin-date-time = "0.4.0"
+ksp = "2.0.20-1.0.25"
 ktor = "2.1.3"
-sqldelight = "1.5.4"
-sqldelight-gradle = "1.5.3"
+sqldelight = "2.0.2"
 testRunner = "1.6.2"
 turbine = "0.7.0"
-
 
 [libraries]
 # COMPOSE
@@ -31,13 +29,7 @@ compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = 
 compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
 
 # COIL
-coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilConmpose" }
-
-# GRADLE PLUGINS
-android-build-tools = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
-hilt-gradle-plugin = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "hilt" }
-kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
-sqldelight-gradle-plugin = { module = "com.squareup.sqldelight:gradle-plugin", version.ref = "sqldelight-gradle" }
+coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
 
 # HILT
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
@@ -50,16 +42,16 @@ kotlin-date-time = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.
 
 # KTOR
 ktor-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor" }
-ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-ios = { module = "io.ktor:ktor-client-ios", version.ref = "ktor" }
-ktor-serialization = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
-ktor-serialization-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
+ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+ktor-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
 
 # SQLDELIGHT
-sqldelight-android-driver = { module = "com.squareup.sqldelight:android-driver", version.ref = "sqldelight" }
-sqldelight-coroutines-extensions = { module = "com.squareup.sqldelight:coroutines-extensions", version.ref = "sqldelight" }
-sqldelight-native-driver = { module = "com.squareup.sqldelight:native-driver", version.ref = "sqldelight" }
-sqldelight-runtime = { module = "com.squareup.sqldelight:runtime", version.ref = "sqldelight" }
+sqldelight-android-driver = { module = "app.cash.sqldelight:android-driver", version.ref = "sqldelight" }
+sqldelight-coroutines-extensions = { module = "app.cash.sqldelight:coroutines-extensions", version.ref = "sqldelight" }
+sqldelight-native-driver = { module = "app.cash.sqldelight:native-driver", version.ref = "sqldelight" }
+sqldelight-runtime = { module = "app.cash.sqldelight:runtime", version.ref = "sqldelight" }
 
 # TESTING
 assertk = { module = "com.willowtreeapps.assertk:assertk", version.ref = "assertK" }
@@ -71,7 +63,6 @@ kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotl
 testRunner = { module = "androidx.test:runner", version.ref = "testRunner" }
 turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 
-
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
@@ -79,7 +70,14 @@ compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "
 hilt-application = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlinCocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
-kotlinKapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-sqldelightPlugin = { id = "com.squareup.sqldelight", version.ref = "sqldelight-gradle" }
+sqldelightPlugin = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
+
+[bundles]
+ktor = [
+    "ktor-client-core",
+    "ktor-content-negotiation",
+    "ktor-serialization-kotlinx-json"
+]

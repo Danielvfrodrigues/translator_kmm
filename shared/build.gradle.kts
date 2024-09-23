@@ -1,7 +1,7 @@
 plugins {
-    alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.kotlinCocoapods)
     alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.kotlinCocoapods)
+    alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.sqldelightPlugin)
 }
@@ -34,9 +34,7 @@ kotlin {
         sourceSets {
             val commonMain by getting {
                 dependencies {
-                    implementation(libs.ktor.core)
-                    implementation(libs.ktor.serialization)
-                    implementation(libs.ktor.serialization.json)
+                    implementation(libs.bundles.ktor)
                     implementation(libs.sqldelight.runtime)
                     implementation(libs.sqldelight.coroutines.extensions)
                     implementation(libs.kotlin.date.time)
@@ -74,5 +72,13 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+    }
+}
+
+sqldelight {
+    databases {
+        create("TranslateDatabase") {
+            packageName.set("br.com.codeforge.translator_kmm.database")
+        }
     }
 }

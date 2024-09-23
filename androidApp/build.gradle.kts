@@ -3,17 +3,17 @@ plugins {
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.hilt.application)
     alias(libs.plugins.kotlinAndroid)
-    alias(libs.plugins.kotlinKapt)
+    alias(libs.plugins.ksp)
     alias(libs.plugins.kotlinSerialization)
 }
 
 android {
     namespace = "br.com.codeforge.translator_kmm.android"
-    compileSdk = 34
+    compileSdk = 35
     defaultConfig {
         applicationId = "br.com.codeforge.translator_kmm.android"
         minSdk = 28
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
     }
@@ -54,8 +54,8 @@ dependencies {
 
     // HILT
     implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
-    kapt(libs.hilt.compiler)
+    ksp(libs.hilt.android.compiler)
+    ksp(libs.hilt.compiler)
     implementation(libs.hilt.navigation.compose)
 
     implementation(libs.ktor.android)
@@ -65,6 +65,5 @@ dependencies {
     androidTestImplementation(libs.composeTesting)
     debugImplementation(libs.composeTestManifest)
 
-//    kaptAndroidTest(libs.hilt.android.compiler)
     androidTestImplementation(libs.hiltTesting)
 }
